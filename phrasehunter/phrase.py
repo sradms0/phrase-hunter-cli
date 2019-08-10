@@ -20,6 +20,7 @@ class Phrase:
         char_indices = self.index(guess)
         if len(char_indices) > 0:
             for c in self: c.check_guess(guess)
+            return True
 
     def __iter__(self):
         yield from self.phrase
