@@ -7,7 +7,7 @@ class Phrase:
 
     @property
     def guessed(self):
-        return sum( [1 if c.was_guessed else 0 for c in self] ) == len(self)
+        return sum( [1 for c in self if c.was_guessed] ) == len(self)
     
     def display(self):
         for c in self.phrase: print(f'{c} ', end='')
