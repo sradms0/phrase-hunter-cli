@@ -13,6 +13,10 @@ class Character:
             self.was_guessed = True
             self.__show()
 
+    @property
+    def original(self):
+        return self.__original
+
     def __str__(self):
         return f'{self.display}'
 
