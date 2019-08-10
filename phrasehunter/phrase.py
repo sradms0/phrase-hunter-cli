@@ -16,6 +16,11 @@ class Phrase:
     def index(self, char):
         return [i for i, c in enumerate(self) if c.original == char]
 
+    def check_guess(self, guess):
+        char_indices = self.index(guess)
+        if len(char_indices) > 0:
+            for c in self: c.check_guess(guess)
+
     def __iter__(self):
         yield from self.phrase
 
