@@ -14,7 +14,7 @@ class Game:
         system('cls') if name == 'nt' else system('clear')
 
     def input_guess(self):
-        return self.active_phrase.check_guess(input('Guess a letter: '))
+        return self.active_phrase.check_guess(input('Guess a letter: ').lower())
 
     def display(self):
         self.active_phrase.display()
