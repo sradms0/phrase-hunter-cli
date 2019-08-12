@@ -6,7 +6,7 @@ from phrasehunter.phrase import Phrase
 
 class Game:
     def __init__(self, phrases):
-        self.phrases = [Phrase(re.sub(r'\W+', ' ', p)) for p in phrases]
+        self.phrases = [Phrase(re.sub(r'\W+', ' ', p).lower()) for p in phrases]
         self.active_phrase = choice(self.phrases)
         self.lives = 5
 
