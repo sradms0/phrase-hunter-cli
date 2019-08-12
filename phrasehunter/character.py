@@ -3,8 +3,14 @@ class Character:
         self.__verify_char(char)
 
         self.__original = char
-        self.display = '_'
-        self.was_guessed = False
+        display = '_'
+        was_guessed = False
+
+        if char.isspace(): 
+            display = char
+            was_guessed = True
+        self.display = display
+        self.was_guessed = was_guessed
 
     def check_guess(self, guess):
         self.__verify_char(guess)
@@ -26,5 +32,5 @@ class Character:
     def __verify_char(self, char):
         if not isinstance(char, str): 
             raise TypeError('A string is required')
-        if len(char) != 1 or not str.isalpha(char): 
+        if len(char) != 1 or not (char.isspace() or char.isalpha()): 
             raise ValueError('Character of a..z required')
