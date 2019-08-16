@@ -40,10 +40,23 @@ class Game:
 
     def start(self):
         while self.__playing:
-            self.clear()
-            self.display()
             try:
+                self.clear()
+                self.display()
                 if not self.input_guess(): self.remove_life()
+                if not self.__playing:
+                    msg = 'You won!'
+                    if self.lives == 0: msg = 'You lost!'
+                    self.clear()
+                    print(msg)
+                    self.display()
+
+                    if input('Play again? [Y/N]').lower() == 'y':
+                        self.__reset()
+                    else: 
+                        self.clear()
+                        self.thank_you()
+                        exit(0)
             except (ValueError, KeyboardInterrupt) as e: 
                 if e.__class__.__name__ == 'ValueError':
                     input(f'{e} [ENTER]')
@@ -52,19 +65,6 @@ class Game:
                     self.thank_you()
                     exit(1)
                 continue
-            if not self.__playing:
-                msg = 'You won!'
-                if self.lives == 0: msg = 'You lost!'
-                self.clear()
-                print(msg)
-                self.display()
-
-                if input('Play again? [Y/N]').lower() == 'y':
-                    self.__reset()
-                else: 
-                    self.clear()
-                    self.thank_you()
-                    exit(0)
 
             print()
 
