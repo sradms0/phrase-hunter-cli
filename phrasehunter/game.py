@@ -36,6 +36,7 @@ class Game:
     def __reset(self):
         self.active_phrase.reset()
         self.lives = 5
+        self.active_phrase = choice(self.phrases)
 
     def start(self):
         while self.__playing:
@@ -50,7 +51,6 @@ class Game:
                     self.clear()
                     self.thank_you()
                     exit(1)
-
                 continue
             if not self.__playing:
                 msg = 'You won!'
@@ -65,7 +65,6 @@ class Game:
                     self.clear()
                     self.thank_you()
                     exit(0)
-
 
             print()
 
