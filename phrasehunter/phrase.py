@@ -23,11 +23,14 @@ class Phrase:
             return True
 
     def reset(self):
-        for c in phrase: c.reset()
+        for c in self.phrase: c.reset()
 
     def __iter__(self):
         yield from self.phrase
 
     def __len__(self):
         return len(self.phrase)
+
+    def __str__(self):
+        return ''.join([f'{c.original}' for c in self.phrase])
 
