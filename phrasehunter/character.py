@@ -36,5 +36,6 @@ class Character:
             raise ValueError('Character of a..z required')
 
     def reset(self):
-        self.was_guessed = False
-        self.display = '_'
+        if not self.original.isspace():
+            self.was_guessed = False
+            self.display = '_'
