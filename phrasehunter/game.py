@@ -14,7 +14,10 @@ class Game:
         system('cls') if name == 'nt' else system('clear')
 
     def input_guess(self):
-        return self.active_phrase.check_guess(input('Guess a letter: ').lower())
+        guess = input('Guess a letter: ').lower()
+        if not guess.isalpha() or len(guess) > 1: 
+            raise ValueError('One alpha character is required')
+        return self.active_phrase.check_guess(guess)
 
     def display(self):
         self.active_phrase.display()
@@ -27,7 +30,17 @@ class Game:
         while not self.active_phrase.guessed and self.lives > 0:
             self.clear()
             self.display()
-            if not self.input_guess(): self.remove_life()
+            try:
+                if not self.input_guess(): self.remove_life()
+            except (ValueError, KeyboardInterrupt) as e: 
+                if e.__class__.__name__ == 'ValueError':
+                    input(f'{e} [ENTER]')
+                else: 
+                    self.clear()
+                    print("Thanks for playing!")
+                    exit(1)
+
+                continue
             print()
         else:
             msg = 'You won!'
