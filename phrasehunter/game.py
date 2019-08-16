@@ -32,6 +32,7 @@ class Game:
 
     def __reset(self):
         self.active_phrase.reset()
+        self.lives = 5
 
     def start(self):
         while self.__playing:
@@ -48,11 +49,18 @@ class Game:
                     exit(1)
 
                 continue
+            if not self.__playing:
+                msg = 'You won!'
+                if self.lives == 0: msg = 'You lost!'
+                self.clear()
+                print(msg)
+                self.display()
+
+                if input('Play again? [Y/N]').lower() == 'y':
+                    self.__reset()
+                else: 
+                    exit(0)
+
+
             print()
-        else:
-            msg = 'You won!'
-            if self.lives == 0: msg = 'You lost!'
-            self.clear()
-            print(msg)
-            self.display()
 
