@@ -26,8 +26,15 @@ class Game:
     def remove_life(self):
         self.lives -= 1
 
+    @property
+    def __playing(self):
+        return not self.active_phrase.guessed and self.lives > 0
+
+    def __reset(self):
+        self.active_phrase.reset()
+
     def start(self):
-        while not self.active_phrase.guessed and self.lives > 0:
+        while self.__playing:
             self.clear()
             self.display()
             try:

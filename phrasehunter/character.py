@@ -34,3 +34,7 @@ class Character:
             raise TypeError('A string is required')
         if len(char) != 1 or not (char.isspace() or char.isalpha()): 
             raise ValueError('Character of a..z required')
+
+    def reset(self):
+        self.was_guessed = False
+        self.display = '_'

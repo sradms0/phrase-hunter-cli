@@ -22,6 +22,9 @@ class Phrase:
             for c in self: c.check_guess(guess)
             return True
 
+    def reset(self):
+        for c in phrase: c.reset()
+
     def __iter__(self):
         yield from self.phrase
 
