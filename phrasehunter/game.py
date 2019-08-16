@@ -26,6 +26,9 @@ class Game:
     def remove_life(self):
         self.lives -= 1
 
+    def thank_you(self):
+        print("Thanks for playing!")
+
     @property
     def __playing(self):
         return not self.active_phrase.guessed and self.lives > 0
@@ -45,7 +48,7 @@ class Game:
                     input(f'{e} [ENTER]')
                 else: 
                     self.clear()
-                    print("Thanks for playing!")
+                    self.thank_you()
                     exit(1)
 
                 continue
@@ -59,6 +62,8 @@ class Game:
                 if input('Play again? [Y/N]').lower() == 'y':
                     self.__reset()
                 else: 
+                    self.clear()
+                    self.thank_you()
                     exit(0)
 
 
