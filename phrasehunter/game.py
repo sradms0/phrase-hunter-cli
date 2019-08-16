@@ -29,6 +29,11 @@ class Game:
     def thank_you(self):
         print("Thanks for playing!")
 
+    def end(self, status):
+        self.clear()
+        self.thank_you()
+        exit(status)
+
     @property
     def __playing(self):
         return not self.active_phrase.guessed and self.lives > 0
@@ -43,7 +48,9 @@ class Game:
             try:
                 self.clear()
                 self.display()
+
                 if not self.input_guess(): self.remove_life()
+
                 if not self.__playing:
                     msg = 'You won!'
                     if self.lives == 0: msg = 'You lost!'
@@ -51,19 +58,12 @@ class Game:
                     print(msg)
                     self.display()
 
-                    if input('Play again? [Y/N]').lower() == 'y':
-                        self.__reset()
-                    else: 
-                        self.clear()
-                        self.thank_you()
-                        exit(0)
+                    if input('Play again? [Y/N]').lower() == 'y': self.__reset()
+                    else: self.end(0)
+
             except (ValueError, KeyboardInterrupt) as e: 
-                if e.__class__.__name__ == 'ValueError':
-                    input(f'{e} [ENTER]')
-                else: 
-                    self.clear()
-                    self.thank_you()
-                    exit(1)
+                if e.__class__.__name__ == 'ValueError': input(f'{e} [ENTER]')
+                else: self.end(1)
                 continue
 
             print()
