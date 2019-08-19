@@ -4,5 +4,7 @@ from phrasehunter.game import Game
 from phrases import PHRASES
 
 
-game = Game(PHRASES)
-game.start()
+
+if __name__ == '__main__': 
+   game = Game(PHRASES) 
+   game.start()
