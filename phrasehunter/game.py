@@ -135,7 +135,8 @@ class Game:
                 continue
         else:
             msg = 'You won!'
-            if self.lives == 0: msg = 'You lost!'
+            if self.lives == 0: 
+                msg = f'You lost! The phrase was "{self.active_phrase}"'
             self.clear()
             print(msg)
             self.display()
